@@ -1,0 +1,134 @@
+@font-face {
+    font-family: "Forum";
+    src: url("../fonts/forum/Forum-Regular.ttf");
+}
+
+*::after,
+*::before,
+* {
+    font-family: "Forum";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+    width: 100%;
+    /* height: 100%; */
+    /* overflow-x: hidden; */
+    font-size: 16px;
+    font-weight: 400;
+    color: #EFE7D2;
+    background-color: #0A0B0A;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Forum";
+    font-weight: 400;
+    color: #EFE7D2;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+header,
+footer {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.container {
+    max-width: 698px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    background: url(../media/image/texture.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 50px;
+    height: 100vh;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 49%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.content {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: 90%;
+    padding: 50px 60px;
+    border-radius: 15px;
+    border: 2px solid #32322D;
+    overflow-y: auto;
+    gap: 80px;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        display: none;
+        /* Полностью скрывает скроллбар */
+    }
+
+    &.nonborder{
+        border: none;
+        padding: 0;
+        overflow: hidden;
+        border-radius: 0;
+    }
+}

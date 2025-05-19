@@ -1,0 +1,1160 @@
+{
+  "info": {
+    "_postman_id": "bc4c9463-7ff4-4eaf-8a98-6c5d60e4a3d4",
+    "name": "Qitchen API",
+    "description": "Коллекция для тестирования API ресторана Qitchen",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/qitchen/backend",
+      "type": "string"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "Пользователи",
+      "item": [
+        {
+          "name": "Регистрация",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "if (jsonData.data && jsonData.data.token) {",
+                  "    pm.environment.set(\"token\", jsonData.data.token);",
+                  "    console.log(\"Токен авторизации сохранен\");",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "register"
+              ]
+            },
+            "description": "Регистрация нового пользователя"
+          },
+          "response": []
+        },
+        {
+          "name": "Вход",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "if (jsonData.data && jsonData.data.token) {",
+                  "    pm.environment.set(\"token\", jsonData.data.token);",
+                  "    console.log(\"Токен авторизации сохранен\");",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "login"
+              ]
+            },
+            "description": "Вход пользователя"
+          },
+          "response": []
+        },
+        {
+          "name": "Профиль",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "profile"
+              ]
+            },
+            "description": "Получение данных профиля пользователя"
+          },
+          "response": []
+        },
+        {
+          "name": "Обновление пароля",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"password123\",\n  \"new_password\": \"new_password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/update-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "update-password"
+              ]
+            },
+            "description": "Обновление пароля пользователя"
+          },
+          "response": []
+        }
+      ],
+      "description": "Операции с пользователями"
+    },
+    {
+      "name": "Адреса",
+      "item": [
+        {
+          "name": "Создание адреса",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"ул. Примерная, д. 1, кв. 1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/address",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "address"
+              ]
+            },
+            "description": "Создание нового адреса"
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление адреса",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/address/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "address",
+                "1"
+              ]
+            },
+            "description": "Удаление адреса"
+          },
+          "response": []
+        }
+      ],
+      "description": "Операции с адресами пользователей"
+    },
+    {
+      "name": "Корзина",
+      "item": [
+        {
+          "name": "Получение корзины",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/basket",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "basket"
+              ]
+            },
+            "description": "Получение корзины пользователя"
+          },
+          "response": []
+        },
+        {
+          "name": "Добавление блюда",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_dish\": 1,\n  \"quantity\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/basket/dish",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "basket",
+                "dish"
+              ]
+            },
+            "description": "Добавление блюда в корзину"
+          },
+          "response": []
+        },
+        {
+          "name": "Обновление количества блюда",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 3\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/basket/dish/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "basket",
+                "dish",
+                "1"
+              ]
+            },
+            "description": "Обновление количества блюда в корзине"
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление блюда",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/basket/dish/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "basket",
+                "dish",
+                "1"
+              ]
+            },
+            "description": "Удаление блюда из корзины"
+          },
+          "response": []
+        }
+      ],
+      "description": "Операции с корзиной пользователя"
+    },
+    {
+      "name": "Заказы",
+      "item": [
+        {
+          "name": "Создание заказа",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_address\": 1,\n  \"comment\": \"Позвонить перед доставкой\",\n  \"delivery_time\": \"2023-05-01 18:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            },
+            "description": "Создание нового заказа"
+          },
+          "response": []
+        },
+        {
+          "name": "Получение заказов пользователя",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/my-orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "my-orders"
+              ]
+            },
+            "description": "Получение заказов текущего пользователя"
+          },
+          "response": []
+        },
+        {
+          "name": "Получение всех заказов (для администраторов)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            },
+            "description": "Получение всех заказов (требуются права администратора)"
+          },
+          "response": []
+        },
+        {
+          "name": "Обновление статуса заказа",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orders/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders",
+                "1"
+              ]
+            },
+            "description": "Обновление статуса заказа"
+          },
+          "response": []
+        }
+      ],
+      "description": "Операции с заказами"
+    },
+    {
+      "name": "Бронирование",
+      "item": [
+        {
+          "name": "Создание бронирования",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Иван Иванов\",\n  \"email\": \"ivan@example.com\",\n  \"phone\": \"+7 (900) 123-45-67\",\n  \"date\": \"2023-05-10\",\n  \"time\": \"18:00\",\n  \"guests\": 4,\n  \"message\": \"Хотелось бы столик у окна\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/reservation",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reservation"
+              ]
+            },
+            "description": "Создание бронирования столика"
+          },
+          "response": []
+        },
+        {
+          "name": "Получение всех бронирований (для администраторов)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/reservation",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reservation"
+              ]
+            },
+            "description": "Получение всех бронирований (требуются права администратора)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Операции с бронированием столиков"
+    },
+    {
+      "name": "Категории",
+      "item": [
+        {
+          "name": "Получение всех категорий",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/category",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "category"
+              ]
+            },
+            "description": "Получение всех категорий блюд"
+          },
+          "response": []
+        },
+        {
+          "name": "Получение одной категории",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/category/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "category",
+                "1"
+              ]
+            },
+            "description": "Получение одной категории с блюдами"
+          },
+          "response": []
+        },
+        {
+          "name": "Создание категории",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Десерты",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Сладкие десерты",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/category",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "category"
+              ]
+            },
+            "description": "Создание новой категории"
+          },
+          "response": []
+        },
+        {
+          "name": "Обновление категории",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Десерты и торты",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Сладкие десерты и торты",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/category/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "category",
+                "1"
+              ]
+            },
+            "description": "Обновление существующей категории"
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление категории",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/category/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "category",
+                "1"
+              ]
+            },
+            "description": "Удаление категории"
+          },
+          "response": []
+        }
+      ],
+      "description": "Операции с категориями блюд"
+    },
+    {
+      "name": "Блюда",
+      "item": [
+        {
+          "name": "Получение всех блюд",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/product?category=1&limit=12&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "product"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "12"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Получение всех блюд с возможностью фильтрации"
+          },
+          "response": []
+        },
+        {
+          "name": "Получение одного блюда",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/product/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "product",
+                "1"
+              ]
+            },
+            "description": "Получение одного блюда по ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Создание блюда",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Салат Цезарь",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Классический салат Цезарь с курицей",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "450",
+                  "type": "text"
+                },
+                {
+                  "key": "id_category",
+                  "value": "3",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/product",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "product"
+              ]
+            },
+            "description": "Создание нового блюда"
+          },
+          "response": []
+        },
+        {
+          "name": "Обновление блюда",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Салат Цезарь с креветками",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Классический салат Цезарь с креветками",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "550",
+                  "type": "text"
+                },
+                {
+                  "key": "id_category",
+                  "value": "3",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/product/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "product",
+                "1"
+              ]
+            },
+            "description": "Обновление существующего блюда"
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление блюда",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/product/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "product",
+                "1"
+              ]
+            },
+            "description": "Удаление блюда"
+          },
+          "response": []
+        }
+      ],
+      "description": "Операции с блюдами"
+    },
+    {
+      "name": "Блог",
+      "item": [
+        {
+          "name": "Получение всех статей",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/blog?limit=10&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Получение всех статей блога с пагинацией"
+          },
+          "response": []
+        },
+        {
+          "name": "Получение одной статьи",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/blog/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "1"
+              ]
+            },
+            "description": "Получение одной статьи блога по ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Создание статьи",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Рецепты итальянских соусов",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "В этой статье мы рассмотрим...",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/blog",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog"
+              ]
+            },
+            "description": "Создание новой статьи блога"
+          },
+          "response": []
+        },
+        {
+          "name": "Обновление статьи",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Рецепты итальянских соусов от шефа",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "В этой обновленной статье мы рассмотрим...",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/blog/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "1"
+              ]
+            },
+            "description": "Обновление существующей статьи блога"
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление статьи",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/blog/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "1"
+              ]
+            },
+            "description": "Удаление статьи блога"
+          },
+          "response": []
+        }
+      ],
+      "description": "Операции со статьями блога"
+    }
+  ]
+} 

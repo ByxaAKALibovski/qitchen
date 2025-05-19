@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^test\.php$ - [L]
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# CORS настройки перенесены в PHP код (index.php) 

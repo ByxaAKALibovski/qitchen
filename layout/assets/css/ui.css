@@ -1,0 +1,325 @@
+.btn {
+    outline: none;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 13px 15px;
+    background-color: #111211;
+    border: 1px solid #32322D;
+    border-radius: 8px;
+    color: #EFE7D2;
+    font-size: 12px;
+    font-weight: 400;
+    transition: 0.3s;
+    width: fit-content;
+    font-family: "Forum";
+
+    &:hover {
+        color: #111211;
+        background-color: #EFE7D2;
+    }
+
+    &:active {
+        border-color: black;
+    }
+
+    &.btn__icon {
+        padding: 11px;
+
+        & svg path {
+            transition: 0.3s;
+        }
+
+        &:hover svg path {
+            fill: #111211;
+        }
+
+        &.btn__basket{
+            padding: 13px 15px;
+            border-radius: 15px;
+            background-color: #111211;
+            border: 1px solid #444444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover{
+                background-color: #EFE7D2;
+            }
+        }
+    }
+
+    &.btn__trans {
+        background-color: transparent;
+
+        &:hover {
+            color: #111211;
+            background-color: #EFE7D2;
+        }
+
+        &.active{
+            color: #111211;
+            background-color: #EFE7D2;
+        }
+    }
+
+    &.btn__light {
+        background-color: #EFE7D2;
+        color: #0A0B0A;
+        border-color: transparent;
+
+        &:hover {
+            color: #EFE7D2;
+            background-color: transparent;
+            border-color: #EFE7D2;
+        }
+    }
+}
+
+.input__cust {
+    border: none;
+    outline: none;
+    background-color: #111211;
+    border-radius: 15px;
+    border: 1px solid #444444;
+    font-weight: 400;
+    font-size: 16px;
+    color: #EFE7D2;
+    padding: 15px 25px;
+    width: 100%;
+    font-family: "Forum";
+
+    &::placeholder {
+        font-family: "Forum";
+        color: #444444;
+    }
+
+    &:focus {
+        border-color: #EFE7D2;
+    }
+}
+
+textarea.input__cust {
+    resize: none;
+    height: 162px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #EFE7D2;
+    font-family: "Forum";
+    width: 100%;
+
+    &::placeholder {
+        font-family: "Forum";
+        color: #444444;
+    }
+}
+
+label.input_file__block {
+    border: none;
+    outline: none;
+    background-color: #111211;
+    border-radius: 15px;
+    border: 1px solid #444444;
+    color: #EFE7D2;
+    padding: 15px 25px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        border-color: #EFE7D2;
+
+        &>p {
+            color: #EFE7D2;
+        }
+    }
+
+    &>p {
+        font-weight: 400;
+        font-size: 16px;
+        font-family: "Forum";
+        color: #444444;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &>img {
+            width: 10px;
+        }
+    }
+
+    & input[type="file"] {
+        display: none;
+    }
+
+    &>img {
+        height: 50px;
+    }
+}
+
+.select__cust {
+    border: none;
+    outline: none;
+    background-color: #111211;
+    border-radius: 15px;
+    border: 1px solid #444444;
+    font-weight: 400;
+    font-size: 16px;
+    color: #EFE7D2;
+    padding: 15px 25px;
+    width: 100%;
+    font-family: "Forum";
+}
+
+.title__main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+    font-weight: 400;
+    font-size: 36px;
+    color: #EFE7D2;
+    text-transform: uppercase;
+
+    &::before,
+    &::after {
+        content: "";
+        display: flex;
+        width: 60px;
+        height: 10px;
+        background: url(../media/icons/rightstroke.svg);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &::before {
+        background: url(../media/icons/leftstroke.svg);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &.title__main_noicon {
+        text-align: center;
+
+        &::after,
+        &::before {
+            display: none;
+        }
+    }
+}
+
+.title__page {
+    position: absolute;
+    bottom: 50px;
+    left: 100px;
+    font-weight: 400;
+    font-size: 140px;
+    color: #EFE7D2;
+    text-transform: uppercase;
+}
+
+.logo a {
+    width: fit-content;
+    font-weight: 400;
+    font-size: 36px;
+    color: #EFE7D2;
+    text-transform: uppercase;
+}
+
+.dish__card{
+    display: flex;
+    flex-direction: column;
+    max-width: 216px;
+    width: 100%;
+    gap: 15px;
+
+    &>img{
+        width: 216px;
+        height: 216px;
+        border-radius: 15px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    & .title__dish{
+        max-width: 216px;
+        font-weight: 400;
+        font-size: 16px;
+        color: #EFE7D2;
+    }
+
+    & .price{
+        font-weight: 400;
+        font-size: 16px;
+        color: #EFE7D2;
+    }
+
+    &>.row{
+        margin-top: auto;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.dish__list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 25px;
+    max-width: 698px;
+    margin: 0 auto;
+}
+
+.big__text_content, .small__text_content{
+    border: 2px solid #32322D;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    background-color: transparent;
+    height: 100%;
+}
+
+.big__text_content{
+    justify-content: space-between;
+
+    & *{
+        text-align: start;
+    }
+
+    & .title__main_noicon{
+        text-align: start;
+    }
+
+    & .title__main:not(.title__main_noicon){
+        text-align: center;
+        font-size: 30px;
+    }
+}
+
+.small__text_content{
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+
+    & *{
+        text-align: center;
+        color: #EFE7D2;
+        font-weight: 400;
+    }
+
+    & h3{
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+    & p{
+        font-size: 12px;
+    }
+}

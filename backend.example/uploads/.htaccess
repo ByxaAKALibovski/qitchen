@@ -1,0 +1,9 @@
+# Разрешить доступ к файлам из директории uploads
+Options +Indexes
+Allow from all
+
+# Запретить выполнение скриптов в этой директории
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch> 
